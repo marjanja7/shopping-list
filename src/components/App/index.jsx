@@ -1,28 +1,52 @@
 import 'components/App/App.css';
-import Button from 'components/Button/index';
+import Product from 'components/Product';
+
 import { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [products, setProducts] = useState([
+    {
+      id: 1,
+      name: 'Milk',
+    },
+    {
+      id: 2,
+      name: 'Bread',
+    },
+    {
+      id: 3,
+      name: 'Bananas'
+    },
+    {
+      id: 4,
+      name: 'Eggs'
+    },
+    {
+      id: 5,
+      name: 'Coffee'
+    },
+  ])
 
-  const plus = () => {
-    setCount(count + 1)
-  }
-
-  const minus = () => {
-    setCount(count - 1)
+  const deleteProduct = (id) => {
+    const filteredProducts = products.filter (product => product.id !== id)
+    setProducts(filteredProducts)
   }
 
   return (
-    <div className='app'> 
-      <h1 className="text-3xl font-bolt text-center mt-24">Счетчик</h1>
-      <p className='text-8xl text-center font-bolt mt-12'>{count}</p>
-      <div className='flex justify-center mt-12'>
-        <Button title="Отнять -1" changeCount={minus} />
-        <Button title="Прибавить +1" changeCount={plus} />
+    <div> 
+      <h1 className='pt-40 text-center text-5xl text-indigo-700'>Products list</h1>
+      <div className='max-w-screen-md mx-avto min-h-screen'>
+        {products.length === 0 && (
+           <div className='mt-20 text-center text-7xl text-grey-400 font-thin'>no products</div>) }
+        {products.length > 0 && products.map((product) => {
+          return (
+            <Product key={product.id} product={product} deleteProduct={deleteProduct} />
+          )
+        })}
       </div>
       
     </div>
+    
   );
 }
 
