@@ -25,6 +25,14 @@ function App() {
       id: 5,
       name: 'Coffee'
     },
+    {
+      id: 6,
+      name: 'Cake'
+    },
+    {
+      id: 7,
+      name: 'Pasta'
+    },
   ])
 
   const deleteProduct = (id) => {
